@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:indonesia_highlight/ih_tabbar.dart' as ihtb;
+import 'package:indonesia_highlight/ui/widgets/ih_tabbar.dart' as ihtb;
 //pages imports
-import 'pages/dashboard_page.dart';
-import 'pages/notification_page.dart';
-import 'pages/setting_page.dart';
-import 'pages/explore_page.dart';
+import 'ui/screens/dashboard_screen.dart';
+import 'ui/screens/notification_screen.dart';
+import 'ui/screens/setting_screen.dart';
+import 'ui/screens/explore_screen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {  
+class _HomePageState extends State<HomePage> {
 
   int currentTab = 0;
 
