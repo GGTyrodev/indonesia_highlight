@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:indonesia_highlight/homepage.dart';
+import 'app.dart';
 
-void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Indonesia Highlight",
-      home: HomePage(),
-    );
-  }
-}
+void main() => runApp(IndonesiaHighlightApp());
+
