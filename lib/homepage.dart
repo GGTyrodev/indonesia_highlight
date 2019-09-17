@@ -1,15 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 import 'package:indonesia_highlight/ih_tabbar.dart' as ihtb;
+//pages imports
+import 'pages/dashboard_page.dart';
+import 'pages/notification_page.dart';
+import 'pages/setting_page.dart';
+import 'pages/explore_page.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+class _HomePageState extends State<HomePage> {  
+
+  int currentTab = 0;
+
+  List<Widget> screens;
+  Widget currentScreen;
+
+  final PageStorageBucket bucket = PageStorageBucket();
+
+  @override
+  void initState() {
+    screens = [
+      DashboardPage(), ExplorePage(), NotificationsPage(), SettingsPage()
+    ];
+    currentScreen  = screens[0];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +37,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.red,
         title: Text('Indonesia Highlight'),
       ),
-      body: _buildMainList(),
+      body: PageStorage(child: currentScreen, bucket: bucket),
       bottomNavigationBar: ihtb.IconTabBar(
           index: 0,
           iconStyle: ihtb.IconStyle(onSelectColor: Colors.red),
+          onTap: (i){
+            _buildContentView(i);
+          },
           items: [
             ihtb.IconTabBarItem(Icons.home),
             ihtb.IconTabBarItem(Icons.search),
@@ -32,27 +54,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildMainList() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
-        }
-    );
-  }
-
-  Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-    );
+  _buildContentView(int i) {
+    setState(() {
+      currentTab = i;
+      currentScreen = screens[i];
+    });    
   }
 }
+
+
+
+
