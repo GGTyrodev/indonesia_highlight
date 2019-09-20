@@ -7,7 +7,7 @@ class IndonesiaHighlightApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Indonesia Highlight",
-      initialRoute: '/home',
+      initialRoute: '/',
       routes: {
         "/": (context) => HomePage(),
         "/home": (context) => HomePage(),

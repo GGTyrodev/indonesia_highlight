@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     screens = [
-      DashboardPage(), ExplorePage(), NotificationsPage(), SettingsPage()
+      DashboardScreen(), ExplorePage(), NotificationsPage(), SettingsPage()
     ];
     currentScreen  = screens[0];
     super.initState();
